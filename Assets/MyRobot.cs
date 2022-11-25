@@ -5,6 +5,7 @@ using UnityEngine;
 public class MyRobot : MonoBehaviour
 {
     float speed;
+    public int priority;
     int[] rotY = {0, 90, 180, 270};
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,10 @@ public class MyRobot : MonoBehaviour
     {
         Move();
     }
+
+    // Utilizar los triggers para detectar robots, tarimas, cajas o paredes
+    // Si este robot detecta otro robot en su trigger derecho o izquierdo y el otro robot te detecta vise versa, significa que hay una intersección, revisar prioridad
+
 
     private void OnCollisionStay(Collision collision){
         int rot;
