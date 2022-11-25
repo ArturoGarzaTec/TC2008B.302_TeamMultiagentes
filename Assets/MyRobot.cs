@@ -8,11 +8,13 @@ public class MyRobot : MonoBehaviour
     public int priority;
     public GameObject[] Triggers;
     int[] rotY = {0, 90, 180, 270};
+    bool canMove = true;
     // Start is called before the first frame update
     void Start()
     {
         //speed = Random.Range(0.005f, 0.01f);
         speed = 0.005f;
+        
     }
 
     void Move()
@@ -40,15 +42,18 @@ public class MyRobot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < Triggers.Length; i++)
+        //for (int i = 0; i < Triggers.Length; i++)
+        //{
+        //if (!Triggers[1].GetComponent<Trigger>().isTriggered)
+        //{
+        //    //Debug.Log(Triggers[i].GetComponent<Trigger>().obj);
+        //    //Debug.Log(Triggers[i].GetComponent<Trigger>().tag);
+        //    Move();
+        //}
+        //}
+        if (canMove)
         {
-            //if (!(Triggers[i].GetComponent<Trigger>().isTriggered && Triggers[i].GetComponent<Trigger>().CompareTag("CenterTrigger")))
-            if (Triggers[i].GetComponent<Trigger>().isTriggered)
-            {
-                //Debug.Log(Triggers[i].GetComponent<Trigger>().obj);
-                //Debug.Log(Triggers[i].GetComponent<Trigger>().tag);
-                Move();
-            }
+            Move();
         }
     }
 
@@ -81,19 +86,73 @@ public class MyRobot : MonoBehaviour
     //    transform.rotation = Quaternion.Euler(0, rotY[rot], 0);
     //}
 
-    //private void OnCollisionStay(Collision collision)
-    //{
-    //    int rot;
+    private void OnCollisionEnter(Collision collision)
+    {
 
-    //    while (true)
-    //    {
-    //        rot = Random.Range(0, rotY.Length);
-    //        if (rotY[rot] != transform.eulerAngles.y)
-    //        {
-    //            break;
-    //        }
+        canMove = true;
+        GameObject obj = collision.gameObject;
 
-    //    }
-    //    transform.rotation = Quaternion.Euler(0, rotY[rot], 0);
-    //}
+        if (obj.CompareTag("Box") || obj.CompareTag("Pallet"))
+        {
+            //int[] rotR = { 90, 270 };
+            float y = transform.rotation.y;
+            float[] rotR = { y+90, y+270 };
+            int rot = Random.Range(0, rotR.Length);
+            transform.rotation = Quaternion.Euler(0, rotR[rot], 0);
+        }
+        else if (obj.CompareTag("Wall1"))
+        {   
+            float x = transform.position.x - 0.5f;
+            transform.position = new Vector3(x, 0, transform.position.z);
+            float y = transform.rotation.y;
+            float[] rotR = { y + 90, y + 180, y + 270 };
+            int rot = Random.Range(0, rotR.Length);
+            transform.rotation = Quaternion.Euler(0, rotR[rot], 0);
+        }
+        else if (obj.CompareTag("Wall2"))
+        {   
+            float z = transform.position.z - 0.5f;
+            transform.position = new Vector3(transform.position.x, 0, z);
+            float y = transform.rotation.y;
+            float[] rotR = { y + 90, y + 180, y + 270 };
+            int rot = Random.Range(0, rotR.Length);
+            transform.rotation = Quaternion.Euler(0, rotR[rot], 0);
+        }
+        else if (obj.CompareTag("Wall3"))
+        {
+            float z = transform.position.z + 0.5f;
+            transform.position = new Vector3(transform.position.x, 0, z);
+            float y = transform.rotation.y;
+            float[] rotR = { y + 90, y + 180, y + 270 };
+            int rot = Random.Range(0, rotR.Length);
+            transform.rotation = Quaternion.Euler(0, rotR[rot], 0);
+        }
+        else if (obj.CompareTag("Wall4"))
+        {
+            float x = transform.position.x + 0.5f;
+            transform.position = new Vector3(x, 0, transform.position.z);
+            float y = transform.rotation.y;
+            float[] rotR = { y + 90, y + 180, y + 270 };
+            int rot = Random.Range(0, rotR.Length);
+            transform.rotation = Quaternion.Euler(0, rotR[rot], 0);
+        }
+
+        //int rot;
+
+        //while (true)
+        //{
+        //    rot = Random.Range(0, rotY.Length);
+        //    if (rotY[rot] != transform.eulerAngles.y)
+        //    {
+        //        break;
+        //    }
+
+        //}
+        //transform.rotation = Quaternion.Euler(0, rotY[rot], 0);
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        canMove = true;
+    }
 }
