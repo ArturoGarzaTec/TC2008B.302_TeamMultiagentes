@@ -13,7 +13,7 @@ public class MyRobot : MonoBehaviour
     void Start()
     {
         //speed = Random.Range(0.005f, 0.01f);
-        speed = 0.005f;
+        speed = 0.05f;
         
     }
 
@@ -104,8 +104,7 @@ public class MyRobot : MonoBehaviour
         {   
             float x = transform.position.x - 0.5f;
             transform.position = new Vector3(x, 0, transform.position.z);
-            float y = transform.rotation.y;
-            float[] rotR = { y + 90, y + 180, y + 270 };
+            int[] rotR = { 90, 180, 270 };
             int rot = Random.Range(0, rotR.Length);
             transform.rotation = Quaternion.Euler(0, rotR[rot], 0);
         }
@@ -113,8 +112,7 @@ public class MyRobot : MonoBehaviour
         {   
             float z = transform.position.z - 0.5f;
             transform.position = new Vector3(transform.position.x, 0, z);
-            float y = transform.rotation.y;
-            float[] rotR = { y + 90, y + 180, y + 270 };
+            int[] rotR = { 90, 180, 0 };
             int rot = Random.Range(0, rotR.Length);
             transform.rotation = Quaternion.Euler(0, rotR[rot], 0);
         }
@@ -122,8 +120,7 @@ public class MyRobot : MonoBehaviour
         {
             float z = transform.position.z + 0.5f;
             transform.position = new Vector3(transform.position.x, 0, z);
-            float y = transform.rotation.y;
-            float[] rotR = { y + 90, y + 180, y + 270 };
+            int[] rotR = { 0, 180, 270 };
             int rot = Random.Range(0, rotR.Length);
             transform.rotation = Quaternion.Euler(0, rotR[rot], 0);
         }
@@ -131,8 +128,7 @@ public class MyRobot : MonoBehaviour
         {
             float x = transform.position.x + 0.5f;
             transform.position = new Vector3(x, 0, transform.position.z);
-            float y = transform.rotation.y;
-            float[] rotR = { y + 90, y + 180, y + 270 };
+            int[] rotR = { 90, 0, 270 };
             int rot = Random.Range(0, rotR.Length);
             transform.rotation = Quaternion.Euler(0, rotR[rot], 0);
         }
