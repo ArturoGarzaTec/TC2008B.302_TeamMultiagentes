@@ -39,6 +39,13 @@ public class MyRobot : MonoBehaviour
     void Update()
     {
         Move();
+        for (int i = 0; i < Triggers.Length; i++)
+        {
+            if (Triggers[i].GetComponent<Trigger>().isTriggered)
+            {
+                Debug.Log(Triggers[i]);
+            }
+        }
     }
 
     // Utilizar los triggers para detectar robots, tarimas, cajas o paredes

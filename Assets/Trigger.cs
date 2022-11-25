@@ -24,18 +24,18 @@ public class Trigger : MonoBehaviour
     {
         isTriggered = true;
 
-        if (trigger.tag == "CenterTrigger")
-        {
-            Debug.Log("CenterTrigger");
-        }
-        else if (trigger.tag == "RightTrigger")
-        {
-            Debug.Log("RightTrigger");
-        }
-        else if (trigger.tag == "LeftTrigger")
-        {
-            Debug.Log("LeftTrigger");
-        }
+        //if (trigger.tag == "CenterTrigger")
+        //{
+        //    Debug.Log("CenterTrigger");
+        //}
+        //else if (trigger.tag == "RightTrigger")
+        //{
+        //    Debug.Log("RightTrigger");
+        //}
+        //else if (trigger.tag == "LeftTrigger")
+        //{
+        //    Debug.Log("LeftTrigger");
+        //}
     }
 
     private void OnTriggerExit(Collider other)
