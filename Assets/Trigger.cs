@@ -23,23 +23,12 @@ public class Trigger : MonoBehaviour
     private void OnTriggerEnter(Collider other) 
     {
         isTriggered = true;
-
-        //if (trigger.tag == "CenterTrigger")
-        //{
-        //    Debug.Log("CenterTrigger");
-        //}
-        //else if (trigger.tag == "RightTrigger")
-        //{
-        //    Debug.Log("RightTrigger");
-        //}
-        //else if (trigger.tag == "LeftTrigger")
-        //{
-        //    Debug.Log("LeftTrigger");
-        //}
+        obj = other.gameObject;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        
+        isTriggered = false;
+        obj = null;
     }
 }

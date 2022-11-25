@@ -16,22 +16,22 @@ public class MyRobot : MonoBehaviour
 
     void Move()
     {
-        
-        if(transform.eulerAngles.y == 0)
+
+        if (transform.eulerAngles.y == 0)
         {
-            transform.position += new Vector3(0, 0, speed);   
+            transform.position += new Vector3(speed, 0, 0);
         }
         else if (transform.eulerAngles.y == 180)
         {
-            transform.position += new Vector3(0, 0, -speed);   
+            transform.position += new Vector3(0, 0, -speed);
         }
         else if (transform.eulerAngles.y == 90)
         {
-            transform.position += new Vector3(speed, 0, 0);   
+            transform.position += new Vector3(0, 0, speed);
         }
         else if (transform.eulerAngles.y == 270)
         {
-            transform.position += new Vector3(-speed, 0, 0);   
+            transform.position += new Vector3(-speed, 0, 0);
         }
 
     }
@@ -43,13 +43,13 @@ public class MyRobot : MonoBehaviour
         {
             if (Triggers[i].GetComponent<Trigger>().isTriggered)
             {
-                Debug.Log(Triggers[i]);
+                Debug.Log(Triggers[i].GetComponent<Trigger>().obj);
             }
         }
     }
 
     // Utilizar los triggers para detectar robots, tarimas, cajas o paredes
-    
+
     // Si este robot detecta otro robot en su trigger derecho o izquierdo y el otro robot te detecta vise versa,
     // significa que hay una intersección, revisar prioridad y dejar pasar al de prioridad mas grande. Cuando el robot de prioridad menor deja de detectar al otro robot pot sus triggers, que siga avanzando.
 
@@ -77,19 +77,19 @@ public class MyRobot : MonoBehaviour
     //    transform.rotation = Quaternion.Euler(0, rotY[rot], 0);
     //}
 
-    // private void OnCollisionStay(Collision collision){
-    //     int rot;
+    //private void OnCollisionStay(Collision collision)
+    //{
+    //    int rot;
 
-    //     GameObject obj = collision.gameObject;
-    //     Debug.Log(obj);
+    //    while (true)
+    //    {
+    //        rot = Random.Range(0, rotY.Length);
+    //        if (rotY[rot] != transform.eulerAngles.y)
+    //        {
+    //            break;
+    //        }
 
-    //     while (true){
-    //         rot = Random.Range(0, rotY.Length);
-    //         if (rotY[rot] != transform.eulerAngles.y){
-    //             break;
-    //         }
-
-    //     }
-    //     transform.rotation = Quaternion.Euler(0, rotY[rot], 0);
-    // }
+    //    }
+    //    transform.rotation = Quaternion.Euler(0, rotY[rot], 0);
+    //}
 }
