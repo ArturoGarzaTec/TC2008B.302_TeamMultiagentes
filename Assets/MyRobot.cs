@@ -13,7 +13,7 @@ public class MyRobot : MonoBehaviour
     void Start()
     {
         //speed = Random.Range(0.005f, 0.01f);
-        speed = 0.01f;
+        speed = 0.005f;
         
     }
 
@@ -102,7 +102,7 @@ public class MyRobot : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, rotR[rot], 0);
         }
         else if (obj.CompareTag("Wall1"))
-        {   
+        {
             float x = transform.position.x - 0.5f;
             transform.position = new Vector3(x, 0, transform.position.z);
             int[] rotR = { 90, 180, 270 };
@@ -110,7 +110,7 @@ public class MyRobot : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, rotR[rot], 0);
         }
         else if (obj.CompareTag("Wall2"))
-        {   
+        {
             float z = transform.position.z - 0.5f;
             transform.position = new Vector3(transform.position.x, 0, z);
             int[] rotR = { 90, 180, 0 };
@@ -132,6 +132,20 @@ public class MyRobot : MonoBehaviour
             int[] rotR = { 90, 0, 270 };
             int rot = Random.Range(0, rotR.Length);
             transform.rotation = Quaternion.Euler(0, rotR[rot], 0);
+        }
+        else if (obj.CompareTag("Robot"))
+        {
+            if (obj.GetComponent<MyRobot>().priority > priority)
+            {
+                canMove = false;
+            }
+            else
+            {
+                canMove = true;
+                int[] rotR = { 90, 0, 270 };
+                int rot = Random.Range(0, rotR.Length);
+                transform.rotation = Quaternion.Euler(0, rotR[rot], 0);
+            }
         }
 
         //int rot;

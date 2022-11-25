@@ -12,21 +12,27 @@ public class RobotManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach(GameObject MyRobot in Robots){
-            //while (true){
-            //    rP = Random.Range(0, positionsArray.Length - 1);
-            //    if (!usedPos.Contains(rP)){
-            //        usedPos.Add(rP);
-            //        break;
-            //    }
+        //int rR = 2;
+        foreach (GameObject MyRobot in Robots)
+        {
+            while (true)
+            {
+                rP = Random.Range(0, positionsArray.Length - 1);
+                if (!usedPos.Contains(rP))
+                {
+                    usedPos.Add(rP);
+                    break;
+                }
 
-            //}
-            //int rR = Random.Range(0, rotY.Length - 1);
-            int rR = 0;
+            }
+            int rR = Random.Range(0, rotY.Length - 1);
+
 
             MyRobot.transform.SetPositionAndRotation(positionsArray[rP], Quaternion.Euler(0, rotY[rR], 0));
+            //rR = 0;
+            //rP++;
         }
-        
+
     }
 
     // Update is called once per frame
