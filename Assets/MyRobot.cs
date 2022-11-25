@@ -13,7 +13,7 @@ public class MyRobot : MonoBehaviour
     void Start()
     {
         //speed = Random.Range(0.005f, 0.01f);
-        speed = 0.05f;
+        speed = 0.01f;
         
     }
 
@@ -95,8 +95,9 @@ public class MyRobot : MonoBehaviour
         if (obj.CompareTag("Box") || obj.CompareTag("Pallet"))
         {
             //int[] rotR = { 90, 270 };
-            float y = transform.rotation.y;
-            float[] rotR = { y+90, y+270 };
+            //float y = transform.rotation.y;
+            int y = (int)transform.rotation.y;
+            int[] rotR = { 0, 90, 180, 270 };
             int rot = Random.Range(0, rotR.Length);
             transform.rotation = Quaternion.Euler(0, rotR[rot], 0);
         }
