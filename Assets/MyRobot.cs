@@ -41,6 +41,10 @@ public class MyRobot : MonoBehaviour
 
     private void OnCollisionStay(Collision collision){
         int rot;
+
+        GameObject obj = collision.gameObject;
+        Debug.Log(obj);
+
         while (true){
             rot = Random.Range(0, rotY.Length);
             if (rotY[rot] != transform.eulerAngles.y){
