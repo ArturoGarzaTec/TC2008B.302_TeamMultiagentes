@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Trigger : MonoBehaviour
 {
+    public GameObject trigger;
+    public GameObject obj;
+    public bool isTriggered = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,14 +20,22 @@ public class Trigger : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider collision) 
+    private void OnTriggerEnter(Collider other) 
     {
+        isTriggered = true;
 
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        
+        if (trigger.tag == "CenterTrigger")
+        {
+            Debug.Log("CenterTrigger");
+        }
+        else if (trigger.tag == "RightTrigger")
+        {
+            Debug.Log("RightTrigger");
+        }
+        else if (trigger.tag == "LeftTrigger")
+        {
+            Debug.Log("LeftTrigger");
+        }
     }
 
     private void OnTriggerExit(Collider other)

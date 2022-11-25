@@ -6,6 +6,7 @@ public class MyRobot : MonoBehaviour
 {
     float speed;
     public int priority;
+    public GameObject[] Triggers;
     int[] rotY = {0, 90, 180, 270};
     // Start is called before the first frame update
     void Start()
@@ -52,22 +53,22 @@ public class MyRobot : MonoBehaviour
     // Si este robot detecta otro robot en su trigger del centro pero el otro robot no lo detecta indicando que este robot esta justo en frente del otro pero el otro va de manera perpendicular,
     // se va a esperar el robot para que siga avanzando el otro y se espera a que ya no lo detecte para poder seguir avanzando
 
-    private void OnTriggerEnter(Collider collision) 
-    {
-        int rot;
+    //private void OnTriggerEnter(Collider collision) 
+    //{
+    //    int rot;
 
-        GameObject obj = collision.gameObject;
-        Debug.Log(obj);
+    //    GameObject obj = collision.gameObject;
+    //    Debug.Log(obj);
 
-        while (true){
-            rot = Random.Range(0, rotY.Length);
-            if (rotY[rot] != transform.eulerAngles.y){
-                break;
-            }
+    //    while (true){
+    //        rot = Random.Range(0, rotY.Length);
+    //        if (rotY[rot] != transform.eulerAngles.y){
+    //            break;
+    //        }
 
-        }
-        transform.rotation = Quaternion.Euler(0, rotY[rot], 0);
-    }
+    //    }
+    //    transform.rotation = Quaternion.Euler(0, rotY[rot], 0);
+    //}
 
     // private void OnCollisionStay(Collision collision){
     //     int rot;
