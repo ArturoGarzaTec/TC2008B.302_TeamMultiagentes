@@ -42,7 +42,8 @@ public class MyRobot : MonoBehaviour
     {
         for (int i = 0; i < Triggers.Length; i++)
         {
-            if (!(Triggers[i].GetComponent<Trigger>().isTriggered && Triggers[i].GetComponent<Trigger>().CompareTag("CenterTrigger")))
+            //if (!(Triggers[i].GetComponent<Trigger>().isTriggered && Triggers[i].GetComponent<Trigger>().CompareTag("CenterTrigger")))
+            if (Triggers[i].GetComponent<Trigger>().isTriggered)
             {
                 //Debug.Log(Triggers[i].GetComponent<Trigger>().obj);
                 //Debug.Log(Triggers[i].GetComponent<Trigger>().tag);
