@@ -24,6 +24,7 @@ public class Trigger : MonoBehaviour
     {
         isTriggered = true;
         obj = other.gameObject;
+        Debug.Log("CenterTrigger");
     }
 
     private void OnTriggerExit(Collider other)

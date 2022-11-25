@@ -11,7 +11,8 @@ public class MyRobot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = Random.Range(0.005f, 0.01f);
+        //speed = Random.Range(0.005f, 0.01f);
+        speed = 0.005f;
     }
 
     void Move()
@@ -39,13 +40,13 @@ public class MyRobot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
         for (int i = 0; i < Triggers.Length; i++)
         {
-            if (Triggers[i].GetComponent<Trigger>().isTriggered)
+            if (!(Triggers[i].GetComponent<Trigger>().isTriggered && Triggers[i].GetComponent<Trigger>().CompareTag("CenterTrigger")))
             {
-                Debug.Log(Triggers[i].GetComponent<Trigger>().obj);
-                Debug.Log(Triggers[i].GetComponent<Trigger>().tag);
+                //Debug.Log(Triggers[i].GetComponent<Trigger>().obj);
+                //Debug.Log(Triggers[i].GetComponent<Trigger>().tag);
+                Move();
             }
         }
     }
@@ -79,19 +80,19 @@ public class MyRobot : MonoBehaviour
     //    transform.rotation = Quaternion.Euler(0, rotY[rot], 0);
     //}
 
-    private void OnCollisionStay(Collision collision)
-    {
-        int rot;
+    //private void OnCollisionStay(Collision collision)
+    //{
+    //    int rot;
 
-        while (true)
-        {
-            rot = Random.Range(0, rotY.Length);
-            if (rotY[rot] != transform.eulerAngles.y)
-            {
-                break;
-            }
+    //    while (true)
+    //    {
+    //        rot = Random.Range(0, rotY.Length);
+    //        if (rotY[rot] != transform.eulerAngles.y)
+    //        {
+    //            break;
+    //        }
 
-        }
-        transform.rotation = Quaternion.Euler(0, rotY[rot], 0);
-    }
+    //    }
+    //    transform.rotation = Quaternion.Euler(0, rotY[rot], 0);
+    //}
 }

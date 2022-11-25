@@ -8,6 +8,8 @@ TagManager:
   - CenterTrigger
   - LeftTrigger
   - RightTrigger
+  - Pallet
+  - Box
   layers:
   - Default
   - TransparentFX
