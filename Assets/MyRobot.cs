@@ -13,7 +13,7 @@ public class MyRobot : MonoBehaviour
     void Start()
     {
         //speed = Random.Range(0.005f, 0.01f);
-        speed = 0.005f;
+        speed = 0.05f;
         
     }
 
