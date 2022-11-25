@@ -23,18 +23,19 @@ public class MyRobot : MonoBehaviour
         }
         else if (transform.eulerAngles.y == 180)
         {
-            transform.position += new Vector3(0, 0, -speed);
+            transform.position += new Vector3(-speed, 0, 0);
         }
         else if (transform.eulerAngles.y == 90)
         {
-            transform.position += new Vector3(0, 0, speed);
+            transform.position += new Vector3(0, 0, -speed);
         }
         else if (transform.eulerAngles.y == 270)
         {
-            transform.position += new Vector3(-speed, 0, 0);
+            transform.position += new Vector3(0, 0, speed);
         }
 
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -44,6 +45,7 @@ public class MyRobot : MonoBehaviour
             if (Triggers[i].GetComponent<Trigger>().isTriggered)
             {
                 Debug.Log(Triggers[i].GetComponent<Trigger>().obj);
+                Debug.Log(Triggers[i].GetComponent<Trigger>().tag);
             }
         }
     }
@@ -77,19 +79,19 @@ public class MyRobot : MonoBehaviour
     //    transform.rotation = Quaternion.Euler(0, rotY[rot], 0);
     //}
 
-    //private void OnCollisionStay(Collision collision)
-    //{
-    //    int rot;
+    private void OnCollisionStay(Collision collision)
+    {
+        int rot;
 
-    //    while (true)
-    //    {
-    //        rot = Random.Range(0, rotY.Length);
-    //        if (rotY[rot] != transform.eulerAngles.y)
-    //        {
-    //            break;
-    //        }
+        while (true)
+        {
+            rot = Random.Range(0, rotY.Length);
+            if (rotY[rot] != transform.eulerAngles.y)
+            {
+                break;
+            }
 
-    //    }
-    //    transform.rotation = Quaternion.Euler(0, rotY[rot], 0);
-    //}
+        }
+        transform.rotation = Quaternion.Euler(0, rotY[rot], 0);
+    }
 }
