@@ -1,0 +1,5 @@
+sceneSetups:
+- path: Assets/Evidencia2/Evidencia2.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
