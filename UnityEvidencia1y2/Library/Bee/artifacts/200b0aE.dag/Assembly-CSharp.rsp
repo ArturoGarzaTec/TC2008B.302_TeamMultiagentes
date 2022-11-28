@@ -361,6 +361,7 @@
 "Assets/Evidencia1/MyRobot.cs"
 "Assets/Evidencia1/RobotManager.cs"
 "Assets/Evidencia1/Trigger.cs"
+"Assets/Evidencia2/AgentControllerUpdate.cs"
 -langversion:9.0
 
 /deterministic
