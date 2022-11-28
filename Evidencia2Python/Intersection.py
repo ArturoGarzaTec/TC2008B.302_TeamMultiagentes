@@ -22,10 +22,10 @@ def get_street(model):
 
 class Car(Agent):
     # Car positions
-    UP = 1 # Car starts up
-    DOWN = 2 # Car starts down
-    LEFT = 3 # Car starts left
-    RIGHT = 4 # Car starts right
+    UP = 1  # Car starts up
+    DOWN = 2  # Car starts down
+    LEFT = 3  # Car starts left
+    RIGHT = 4  # Car starts right
 
     num_of_cars_placed = 0
 
@@ -35,15 +35,15 @@ class Car(Agent):
         self.agent_placed = False
         self.passed_stoplight = False
         self.decided_turn = False
-        self.car_stopped_by_red = False # Check the color of the stoplight
+        self.car_stopped_by_red = False  # Check the color of the stoplight
         self.count = 0
 
         self.car_starting_pos = {
             # Y ES PRIMERO Y LUEGO X
-            self.UP: (0, 4), # Car UP position
-            self.DOWN: (9, 5), # Car DOWN position
-            self.LEFT: (5, 0), # Car LEFT position
-            self.RIGHT: (4, 9) # Car RIGHT position
+            self.UP: (0, 4),  # Car UP position
+            self.DOWN: (9, 5),  # Car DOWN position
+            self.LEFT: (5, 0),  # Car LEFT position
+            self.RIGHT: (4, 9)  # Car RIGHT position
         }
         self.place_agent()
 
@@ -57,15 +57,18 @@ class Car(Agent):
             self.direction = self.random.choice(list(copy_car_starting_pos.items()))
             # We iterate over the positions in search of an empty cell
             while True:
-                if not self.model.grid.is_cell_empty(self.direction[1]): # If the cell we choose already has a car
+                if not self.model.grid.is_cell_empty(self.direction[1]):  # If the cell we choose already has a car
                     # print(copy_car_starting_pos)# -> DEBUG
-                    del copy_car_starting_pos[self.direction[0]] # We delete the key (starting side) and value (starting coordinates) from the dictionary
-                    if len(copy_car_starting_pos) != 0: # If the dict is not empty
-                        self.direction = self.random.choice(list(copy_car_starting_pos.items())) # We choose new coordinates
-                    else: # The dict is empty
+                    del copy_car_starting_pos[self.direction[0]]
+                    # We delete the key (starting side) and value (starting coordinates) from the dictionary
+                    if len(copy_car_starting_pos) != 0:  # If the dict is not empty
+                        # We choose new coordinates
+                        self.direction = self.random.choice(list(copy_car_starting_pos.items()))
+                    else:  # The dict is empty
                         break
-                else: # We found an empty cell
-                    del copy_car_starting_pos[self.direction[0]] # We delete the key (starting side) and value (starting coordinates) from the dictionary
+                else:  # We found an empty cell
+                    # We delete the key (starting side) and value (starting coordinates) from the dictionary
+                    del copy_car_starting_pos[self.direction[0]]
                     self.model.grid.place_agent(self, self.direction[1]) # We place the car agent
                     self.agent_placed = True # We now know this car is placed
                     self.count += 1
@@ -77,7 +80,8 @@ class Car(Agent):
     def step(self):
         # First check if car is placed
         if self.agent_placed:
-            # The car agent has already been placed, we now check if our car agent is in the last position of the grid or not
+            # The car agent has already been placed,
+            # we now check if our car agent is in the last position of the grid or not
             if self.reached_end():
                 # Car agent is in last position of the grid
                 self.delete_agent()
@@ -120,14 +124,14 @@ class Car(Agent):
 
     def turn_car(self):
         turn_pos = {
-            self.UP: (4, 4), # Car starts up
-            self.DOWN: (5, 5), # Car starts down
-            self.LEFT: (5, 4), # Car starts left
-            self.RIGHT: (4, 5) # Car starts right
+            self.UP: (4, 4),  # Car starts up
+            self.DOWN: (5, 5),  # Car starts down
+            self.LEFT: (5, 4),  # Car starts left
+            self.RIGHT: (4, 5)  # Car starts right
         }
         for key, value in turn_pos.items():
             if self.direction[0] == key and self.pos == value:
-                turn = self.random.choice([True, False]) # We decide if the car turns or not
+                turn = self.random.choice([True, False])  # We decide if the car turns or not
                 self.decided_turn = True
                 if turn:
                     self.decided_turn = True
@@ -167,13 +171,17 @@ class Car(Agent):
         )
         for neighbor in neighbors:
             y, x = neighbor.pos
-            if ((self.direction[0] == self.UP and self.pos == (y - 1, x)) or (self.direction[0] == self.DOWN and self.pos == (y + 1, x)) or (self.direction[0] == self.LEFT and self.pos == (y, x - 1)) or (self.direction[0] == self.RIGHT and self.pos == (y, x + 1))) and isinstance(self.model.grid[y][x], Car):
+            if ((self.direction[0] == self.UP and self.pos == (y - 1, x)) or
+                (self.direction[0] == self.DOWN and self.pos == (y + 1, x)) or
+                (self.direction[0] == self.LEFT and self.pos == (y, x - 1)) or
+                (self.direction[0] == self.RIGHT and self.pos == (y, x + 1))) and \
+                    isinstance(self.model.grid[y][x], Car):
                 # If we detect a car in front of us
                 return True
         return False
 
     def delete_agent(self):
-        self.model.grid.remove_agent(self) # We turn the agents position to None
+        self.model.grid.remove_agent(self)  # We turn the agents position to None
         self.agent_placed = False
         self.passed_stoplight = False
         self.decided_turn = False
@@ -212,7 +220,8 @@ class Stoplight(Agent):
         for position in range(4):
             y, x = self.pos_car_before_stoplight[position]
             if self.pos == self.pos_stoplight[position] and isinstance(self.model.grid[y][x], Car):
-                # If we are in this position and a car is right, we now turn the first stoplights green and the others red
+                # If we are in this position and a car is right,
+                # we now turn the first stoplights green and the others red
                 if self.pos_stoplight[position] in self.first_positions:
                     # LEFT-UP and DOWN-RIGHT stoplights turn green
                     # LEFT-RIGHT and DOWN-LEFT stoplights turn red
