@@ -204,20 +204,29 @@ public class Controller : MonoBehaviour
                     else // It's a stoplight 
                     {
                         
-                        Light curr = stoplights[agent.id-1].GetComponentInChildren<Light>();
+                        Light[] curr = stoplights[agent.id-1].GetComponentsInChildren<Light>();
                         if (agent.type == 1)
                         {
-                            curr.color = Color.green;
+                            curr[0].intensity = 10.0f;
+                            curr[1].intensity = 0f;
+                            curr[2].intensity = 0f;
+                            curr[3].color = Color.green;
                             //Debug.Log("WHAT: " + agent.id + " " + agent.type + " Deberia de ser verde");
                         }
                         else if (agent.type == 2)
                         {
-                            curr.color = Color.yellow;
+                            curr[0].intensity = 0f;
+                            curr[1].intensity = 10f;
+                            curr[2].intensity = 0f;
+                            curr[3].color = Color.yellow;
                             //Debug.Log("WHAT: " + agent.id + " " + agent.type + " Deberia de ser amarillo");
                         }
                         else if (agent.type == 3)
                         {
-                            curr.color = Color.red;
+                            curr[0].intensity = 0f;
+                            curr[1].intensity = 0f;
+                            curr[2].intensity = 10.0f;
+                            curr[3].color = Color.red;
                             //Debug.Log("WHAT: " + agent.id + " " + agent.type + " Deberia de ser rojo");
                         }
                     }
